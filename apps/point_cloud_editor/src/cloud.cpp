@@ -425,7 +425,7 @@ Cloud::getDisplaySpacePoint (unsigned int index) const
 }
 
 void
-Cloud::getDisplaySpacePoints (std::vector<Point3D>& pts) const
+Cloud::getDisplaySpacePoints (pcl::PointCloud<Point3D>::VectorType& pts) const
 {
   for(unsigned int i = 0; i < cloud_.size(); ++i)
     pts.push_back(getDisplaySpacePoint(i));

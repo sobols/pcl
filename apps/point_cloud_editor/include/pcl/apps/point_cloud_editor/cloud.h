@@ -45,6 +45,7 @@
 #include <QtGui/QColor>
 #include <pcl/apps/point_cloud_editor/localTypes.h>
 #include <pcl/apps/point_cloud_editor/statistics.h>
+#include <pcl/point_cloud.h>
 
 /// @brief A wrapper which allows to use any implementation of cloud provided by
 /// a third-party library.
@@ -348,7 +349,7 @@ class Cloud : public Statistics
     /// @param pts a vector used to store the points whose coordinates are
     /// transformed.
     void
-    getDisplaySpacePoints (std::vector<Point3D>& pts) const;
+    getDisplaySpacePoints (pcl::PointCloud<Point3D>::VectorType& pts) const;
 
     /// @brief Returns a const reference to the internal representation of this
     /// object.

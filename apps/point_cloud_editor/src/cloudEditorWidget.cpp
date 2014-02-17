@@ -153,7 +153,8 @@ CloudEditorWidget::save ()
   else
   {
     pcl::PointCloud<pcl::PointXYZ> uncolored_cloud;
-    pcl::copyPointCloud(cloud_ptr_->getInternalCloud(), uncolored_cloud);
+    // TODO: Fix compilation with VS2010 x86
+    //pcl::copyPointCloud(cloud_ptr_->getInternalCloud(), uncolored_cloud);
     try
     {
       pcl::io::savePCDFile(file_path_std, uncolored_cloud);
