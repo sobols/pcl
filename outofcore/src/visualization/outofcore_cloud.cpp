@@ -28,6 +28,7 @@
 #include <vtkPolyData.h>
 #include <vtkProperty.h>
 #include <vtkSmartPointer.h>
+#include <vtkPolyDataMapper.h>
 
 // Boost
 //#include <boost/date_time.hpp>
@@ -122,6 +123,7 @@ OutofcoreCloud::OutofcoreCloud (std::string name, boost::filesystem::path& tree_
   {
 //    OutofcoreCloud::pcd_reader_thread = boost::shared_ptr<boost::thread>(new boost::thread(&OutofcoreCloud::pcdReaderThread, this));
     OutofcoreCloud::pcd_reader_thread = boost::shared_ptr<boost::thread>(new boost::thread(&OutofcoreCloud::pcdReaderThread));
+    pcd_queue_mutex.unlock();
   }
 
 
@@ -242,7 +244,8 @@ OutofcoreCloud::render (vtkRenderer* renderer)
         {
 
           vtkSmartPointer<vtkActor> cloud_actor = vtkSmartPointer<vtkActor>::New ();
-          vtkSmartPointer<vtkVertexBufferObjectMapper> mapper = vtkSmartPointer<vtkVertexBufferObjectMapper>::New ();
+          // vtkSmartPointer<vtkVertexBufferObjectMapper> mapper = vtkSmartPointer<vtkVertexBufferObjectMapper>::New ();
+          vtkSmartPointer<vtkPolyDataMapper> mapper = vtkSmartPointer<vtkPolyDataMapper>::New ();
 
           CloudDataCacheItem *cloud_data_cache_item = &cloud_data_cache.get(pcd_file);
 
